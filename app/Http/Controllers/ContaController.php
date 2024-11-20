@@ -10,8 +10,8 @@ class ContaController extends Controller
 {
     public function index()
     {
-       $contas = Conta::orderByDesc('created_at')->get();
-       return view('contas.index', ['contas' => $contas]);
+        $contas = Conta::orderByDesc('created_at')->get();
+        return view('contas.index', ['contas' => $contas]);
     }
 
     public function create()
@@ -28,7 +28,7 @@ class ContaController extends Controller
     {
         $request->validated();
         $conta = Conta::create($request->all());
-        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso');
+        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso!');
     }
 
     public function edit(Conta $conta)
@@ -45,11 +45,12 @@ class ContaController extends Controller
             'valor' => $request->valor,
             'vencimento' => $request->vencimento,
         ]);
-        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta editada com sucesso');
+        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta editada com sucesso!');
     }
 
-    public function destroy()
+    public function destroy(Conta $conta)
     {
-        dd("Delete");
+        $conta->delete();
+        return redirect()->route('conta.index')->with('sucesso', 'Conta apagada com sucesso!');
     }
 }
