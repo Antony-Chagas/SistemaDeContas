@@ -17,7 +17,19 @@ Gerar a chave
 php artisan key:generate
 ```
 
+Executar as migration
+```
+php artisan migrate
+```
+
 Inicar o prjeto com laravel 
 ```
-PHP artisan sever
+php artisan serve
+http://127.0.0.1:8000/
+```
+
+Criar a migration
+
+```
+php artisan make:migration create_contas_table
 ```
