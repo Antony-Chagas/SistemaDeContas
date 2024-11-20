@@ -10,7 +10,8 @@ class ContaController extends Controller
 {
     public function index()
     {
-        return view('contas.index');
+       $contas = Conta::orderByDesc('created_at')->get();
+       return view('contas.index', ['contas' => $contas]);
     }
 
     public function create()
@@ -18,16 +19,16 @@ class ContaController extends Controller
         return view('contas.create');
     }
 
-    public function show()
+    public function show(Conta $conta)
     {
-        return view('contas.show');
+        return view('contas.show', ['conta' => $conta]);
     }
 
     public function store(ContaRequest $request)
     {
         $request->validated();
-        Conta::create($request->all());
-        return redirect()->route('conta.show')->with('sucesso', 'Conta cadastrada com sucesso');
+        $conta = Conta::create($request->all());
+        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso');
     }
 
     public function edit()
