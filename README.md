@@ -3,7 +3,7 @@
 * PHP 8 ou superior 
 * Composer
 
-## Como Rodar o projeto baixado 
+## Como rodar o projeto baixado 
 Instalar as dependências
 
 ```
