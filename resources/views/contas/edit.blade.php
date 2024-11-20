@@ -10,6 +10,12 @@
         </a>
         <h2>Editar conta</h2>
 
+        @if (session('error'))
+            <span style="color: #ff0000;">
+                {{ session('error') }}
+            </span> <br><br>
+        @endif
+
         @if ($errors->any())
             <span style="color: #ff0000;">
                 @foreach ($errors->all() as $error)
