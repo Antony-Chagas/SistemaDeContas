@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContaRequest;
 use App\Models\Conta;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,10 @@ class ContaController extends Controller
         return view('contas.show');
     }
 
-    public function store(Request $request)
+    public function store(ContaRequest $request)
     {
-        $conta = Conta::create($request->all());
+        $request->validated();
+        Conta::create($request->all());
         return redirect()->route('conta.show')->with('sucesso', 'Conta cadastrada com sucesso');
     }
 
