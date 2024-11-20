@@ -31,14 +31,21 @@ class ContaController extends Controller
         return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso');
     }
 
-    public function edit()
+    public function edit(Conta $conta)
     {
-        return view('contas.edit');
+
+        return view('contas.edit', ['conta' => $conta]);
     }
 
-    public function update()
+    public function update(ContaRequest $request, Conta $conta)
     {
-        dd("Editar");
+        $request->validated();
+        $conta->update([
+            'nome' => $request->nome,
+            'valor' => $request->valor,
+            'vencimento' => $request->vencimento,
+        ]);
+        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta editada com sucesso');
     }
 
     public function destroy()
