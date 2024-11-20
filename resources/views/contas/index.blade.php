@@ -8,6 +8,12 @@
         </a>
         <h2>Listar as contas</h2>
 
+        @if (session('error'))
+            <span style="color: #ff0000;">
+                {{ session('error') }}
+            </span> <br><br>
+        @endif
+
         @if (session('sucesso'))
             <span style="color: #082;">
                 {{ session('sucesso') }}

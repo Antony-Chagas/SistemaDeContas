@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContaRequest;
 use App\Models\Conta;
+use Exception;
 use Illuminate\Http\Request;
 
 class ContaController extends Controller
@@ -27,30 +28,41 @@ class ContaController extends Controller
     public function store(ContaRequest $request)
     {
         $request->validated();
-        $conta = Conta::create($request->all());
-        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso!');
+        try {
+            $conta = Conta::create($request->all());
+            return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso!');
+        } catch (Exception $e) {
+            return back()->with('error', 'Conta não cadastrada!');
+        }
     }
 
     public function edit(Conta $conta)
     {
-
         return view('contas.edit', ['conta' => $conta]);
     }
 
     public function update(ContaRequest $request, Conta $conta)
     {
         $request->validated();
-        $conta->update([
-            'nome' => $request->nome,
-            'valor' => $request->valor,
-            'vencimento' => $request->vencimento,
-        ]);
-        return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta editada com sucesso!');
+        try {
+            $conta->update([
+                'nome' => $request->nome,
+                'valor' => $request->valor,
+                'vencimento' => $request->vencimento,
+            ]);
+            return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta editada com sucesso!');
+        } catch (Exception $e) {
+            return back()->withInput()->with('error', 'Conta não editada!');
+        }
     }
 
     public function destroy(Conta $conta)
     {
-        $conta->delete();
-        return redirect()->route('conta.index')->with('sucesso', 'Conta apagada com sucesso!');
+        try {
+            $conta->delete();
+            return redirect()->route('conta.index')->with('sucesso', 'Conta apagada com sucesso!');
+        } catch (Exception $e) {
+            return back()->with('error', 'Conta não apagada!');
+        }
     }
 }
