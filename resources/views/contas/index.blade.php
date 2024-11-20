@@ -16,7 +16,8 @@
         Valor: {{ 'R$ ' . number_format($conta->valor, 2, ',', '.')}} <br>
         Vencimento: {{ \Carbon\Carbon::parse($conta->vencimento)->tz('America/Sao_Paulo')->format('d/m/Y')}} <br>
 
-        <a href="{{ route('conta.show', ['conta' => $conta->id]) }}"> Visualizar </a>
+        <a href="{{ route('conta.show', ['conta' => $conta->id]) }}"> Visualizar </a> <br>
+        <a href="{{ route('conta.edit', ['conta' => $conta->id]) }}"> Editar </a>
 
         <hr>
     @empty

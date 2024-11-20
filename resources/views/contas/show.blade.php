@@ -2,7 +2,8 @@
 @section('conteudo')
 
 <body>
-    <a href="{{ route('conta.index') }}">Lista de contas</a>
+    <a href="{{ route('conta.index') }}">Lista de contas</a> <br>
+    <a href="{{ route('conta.edit', ['conta' => $conta->id]) }}"> Editar </a>
 
     <h2>Detalhe da conta</h2>
 
