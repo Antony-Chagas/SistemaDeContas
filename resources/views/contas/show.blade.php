@@ -5,8 +5,7 @@
         <a href="{{ route('conta.index') }}">
             <button type="button">Lista de contas</button>
         </a> <br>
-
-
+        
         <h2>Detalhe da conta</h2>
 
         @if (session('sucesso'))
