@@ -30,7 +30,11 @@ class ContaController extends Controller
     {
         $request->validated();
         try {
-            $conta = Conta::create($request->all());
+            $conta = Conta::create([
+                'nome'=> $request->nome,
+                'valor'=> str_replace(',', '.', str_replace('.', '', $request->valor)),
+                'vencimento' => $request->vencimento,
+            ]);
             Log::info('Conta criada com sucesso.', ['id' => $conta->id, 'conta' => $conta]);
             return redirect()->route('conta.show', ['conta' => $conta->id])->with('sucesso', 'Conta cadastrada com sucesso!');
         } catch (Exception $e) {
@@ -50,7 +54,7 @@ class ContaController extends Controller
         try {
             $conta->update([
                 'nome' => $request->nome,
-                'valor' => $request->valor,
+                'valor'=> str_replace(',', '.', str_replace('.', '', $request->valor)),
                 'vencimento' => $request->vencimento,
             ]);
             Log::info('Conta editada com sucesso.', ['id' => $conta->id, 'conta' => $conta]);

@@ -37,4 +37,7 @@
 
             <button type="submit">Cadastrar</button>
         </form>
+        <script src="{{ asset('js/custom.js') }}"></script>
     </body>
+
+    </html>
