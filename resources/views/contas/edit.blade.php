@@ -1,5 +1,5 @@
-@extends('html')
-@section('conteudo')
+@extends('layouts.admin')
+@section('content')
 
     <body>
         <a href="{{ route('conta.index') }}">
@@ -35,7 +35,8 @@
 
             <label>Valor: </label>
             <input type="text" name="valor" id="valor" placeholder="Valor da conta"
-                value="{{ old('valor', isset($conta->valor) ? number_format($conta->valor, '2', ',', '.') : '') }}"> <br><br>
+                value="{{ old('valor', isset($conta->valor) ? number_format($conta->valor, '2', ',', '.') : '') }}">
+            <br><br>
 
             <label>Vencimento: </label>
             <input type="date" name="vencimento" id="vencimento" value="{{ old('vencimento', $conta->vencimento) }}">
@@ -43,7 +44,5 @@
 
             <button type="submit">Editar</button>
         </form>
-        <script src="{{ asset('js/custom.js') }}"></script>
     </body>
-
-    </html>
+@endsection

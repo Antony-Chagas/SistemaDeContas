@@ -33,3 +33,12 @@ Criar a migration
 ```
 php artisan make:migration create_contas_table
 ```
+
+Criar seed, dados de teste para o sistema
+```
+php artisan make:seeder ContasSeeder
+```
+Executar as seed
+```
+php artisan db:seed
+```

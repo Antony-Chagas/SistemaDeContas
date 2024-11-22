@@ -1,5 +1,5 @@
-@extends('html')
-@section('conteudo')
+@extends('layouts.admin')
+@section('content')
 
     <body>
         <a href="{{ route('conta.index') }}">
@@ -37,7 +37,5 @@
 
             <button type="submit">Cadastrar</button>
         </form>
-        <script src="{{ asset('js/custom.js') }}"></script>
     </body>
-
-    </html>
+@endsection
