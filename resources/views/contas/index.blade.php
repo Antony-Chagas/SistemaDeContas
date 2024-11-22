@@ -1,5 +1,5 @@
-@extends('html')
-@section('conteudo')
+@extends('layouts.admin')
+@section('content')
 
     <body>
 
@@ -43,5 +43,5 @@
         @empty
             <span style="color: #ff0000">Nenhuma conta encontrada</span>
         @endforelse
-
     </body>
+@endsection

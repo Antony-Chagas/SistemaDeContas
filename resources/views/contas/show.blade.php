@@ -1,11 +1,11 @@
-@extends('html')
-@section('conteudo')
+@extends('layouts.admin')
+@section('content')
 
     <body>
         <a href="{{ route('conta.index') }}">
             <button type="button">Lista de contas</button>
         </a> <br>
-        
+
         <h2>Detalhe da conta</h2>
 
         @if (session('sucesso'))
@@ -25,3 +25,4 @@
             <button type="button">Editar</button>
         </a>
     </body>
+@endsection
