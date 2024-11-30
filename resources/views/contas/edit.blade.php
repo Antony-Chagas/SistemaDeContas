@@ -1,48 +1,65 @@
 @extends('layouts.admin')
 @section('content')
-
-    <body>
-        <a href="{{ route('conta.index') }}">
-            <button type="button">Lista de contas</button>
-        </a> <br><br>
-        <a href="{{ route('conta.show', ['conta' => $conta->id]) }}">
-            <button type="button">Visualizar</button>
-        </a>
-        <h2>Editar conta</h2>
-
+    <div class="card mt-4 mb-4  border-light shadow">
+        <div class="card-header d-flex justify-content-between">
+            <span>Editar conta</span>
+            <span>
+                <a href="{{ route('conta.index') }}" type="button" class="btn btn-info btn-sm">
+                    Listar
+                </a>
+                <a href="{{ route('conta.show', ['conta' => $conta->id]) }}" class="btn btn-primary btn-sm">
+                    Visualizar
+                </a>
+            </span>
+        </div>
         @if (session('error'))
-            <span style="color: #ff0000;">
+            <div class="alert alert-danger m-3" role="alert">
                 {{ session('error') }}
-            </span> <br><br>
+            </div>
+        @endif
+
+        @if (session('sucesso'))
+            <div class="alert alert-success m-3" role="alert">
+                {{ session('sucesso') }}
+            </div>
         @endif
 
         @if ($errors->any())
-            <span style="color: #ff0000;">
-                @foreach ($errors->all() as $error)
-                    {{ $error }}<br>
-                @endforeach
-            </span>
-            <br>
-        @endif
+        <div class="alert alert-danger m-3" role="alert">
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br>
+            @endforeach
+        </div>
+    @endif
 
-        <form action="{{ route('conta.update', ['conta' => $conta->id]) }}" method="POST">
-            @csrf
-            @method('PUT')
+        <div class="card-body">
+            <form action="{{ route('conta.update', ['conta' => $conta->id]) }}" method="POST" class="row g-3">
+                @csrf
+                @method('PUT')
 
-            <label>Nome: </label>
-            <input type="text" name="nome" id="nome" placeholder="Nome da conta"
-                value="{{ old('nome', $conta->nome) }}"> <br><br>
+                <div class="col-12">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome da conta"
+                        value="{{ old('nome', $conta->nome) }}">
+                </div>
 
-            <label>Valor: </label>
-            <input type="text" name="valor" id="valor" placeholder="Valor da conta"
-                value="{{ old('valor', isset($conta->valor) ? number_format($conta->valor, '2', ',', '.') : '') }}">
-            <br><br>
+                <div class="col-12">
+                    <label for="Valor" class="form-label">Valor </label>
+                    <input type="text" name="valor" class="form-control" id="valor" placeholder="Valor da conta"
+                        value="{{ old('valor', isset($conta->valor) ? number_format($conta->valor, '2', ',', '.') : '') }}">
+                </div>
 
-            <label>Vencimento: </label>
-            <input type="date" name="vencimento" id="vencimento" value="{{ old('vencimento', $conta->vencimento) }}">
-            <br><br>
+                <div class="col-12">
+                    <label for="vencimento" class="form-label">Vencimento</label>
+                    <input type="date" name="vencimento" class="form-control" id="vencimento"
+                        value="{{ old('vencimento', $conta->vencimento) }}">
+                </div>
 
-            <button type="submit">Editar</button>
-        </form>
-    </body>
+                <div class="col-12">
+                <button type="submit" class="btn btn-warning btn-sm">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 @endsection
