@@ -4,8 +4,8 @@
         <div class="card-header d-flex justify-content-between">
             <span>Visualizar conta</span>
             <span>
-                <a href="{{ route('conta.index') }}" type="button" class="btn btn-info btn-sm">
-                    Listar
+                <a href="{{ route('conta.index') }}" type="button" class="btn btn-secondary btn-sm">
+                    Voltar
                 </a>
                 <a href="{{ route('conta.edit', ['conta' => $conta->id]) }}" class="btn btn-warning btn-sm">
                     Editar
