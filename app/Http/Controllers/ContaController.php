@@ -12,7 +12,7 @@ class ContaController extends Controller
 {
     public function index()
     {
-        $contas = Conta::orderByDesc('created_at')->get();
+        $contas = Conta::orderByDesc('created_at')->paginate(10);
         return view('contas.index', ['contas' => $contas]);
     }
 

@@ -54,11 +54,13 @@
                                 </form>
                             </td>
                         </tr>
+
+                    @empty
+                        <span style="color: #ff0000">Nenhuma conta encontrada</span>
+                    @endforelse
                 </tbody>
-            @empty
-                <span style="color: #ff0000">Nenhuma conta encontrada</span>
-                @endforelse
             </table>
+            {{$contas->onEachSide(0)->links()}}
         </div>
     </div>
 @endsection
