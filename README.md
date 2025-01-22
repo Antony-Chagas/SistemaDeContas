@@ -76,6 +76,8 @@ Instalar sass, extenção css
 npm i --save-dev sass
 ```
 
+Traduzir para português
+https://github.com/lucascudo/laravel-pt-BR-localization
 
 ## Funcionalidades do projeto 🛠️
 
