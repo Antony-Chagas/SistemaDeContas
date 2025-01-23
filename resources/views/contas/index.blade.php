@@ -10,8 +10,8 @@
                 <div class="row">
 
                     <div class="col-md-6 col-sm-12">
-                        <label class="form-label" for="name">Nome</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Nome da conta">
+                        <label class="form-label" for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome da conta" value="{{ $nome }}">
                     </div>
 
                     <div class="col-md-6 col-sm-12 mt-3 pt-3 ">
