@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\Log;
 
 class ContaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contas = Conta::orderByDesc('created_at')->paginate(10);
-        return view('contas.index', ['contas' => $contas]);
+        $contas = Conta::when($request->has('nome'), function($whenQuery) use ($request){
+            $whenQuery->where('nome', 'like', '%' . $request->nome . '%');
+        })
+        ->orderByDesc('created_at')
+        ->paginate(10)
+        ->withQueryString();
+        return view('contas.index', ['contas' => $contas, 'nome'=> $request->nome]);
     }
 
     public function create()
