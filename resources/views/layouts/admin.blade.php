@@ -25,7 +25,7 @@
                     <li><a href="{{ route('conta.index') }}" class="nav-link px-2 text-white">Contas</a></li>
                 </ul>
                 <div class="">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
+                    <button type="button" class="btn btn-outline-light me-2">Sair</button>
                 </div>
             </div>
         </div>

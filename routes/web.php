@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ContaController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [LoginController::class, 'index'])->name('login');
 
 Route::get('/index-conta', [ContaController::class, 'index'])->name('conta.index');
 Route::get('/create-conta', [ContaController::class, 'create'])->name('conta.create');
